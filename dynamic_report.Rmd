@@ -54,7 +54,7 @@ latest_data <- logged_data %>%
 total_sessions <- nrow(latest_data)
 
 # What's the average ink density
-avg_density <- mean(latest_data$density)
+avg_density <- mean(latest_data$density) %>% round(digits = 2)
 
 # How many papers are saved in theory
 total_pages <- sum(latest_data$pages)
