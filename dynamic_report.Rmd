@@ -1,0 +1,94 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+library(tidyverse)
+```
+
+```{css}
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+body {
+  background-color: #F7F6E5;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+h2 {
+  color: #DA4848;
+  border-bottom: 2px solid #DA4848;
+  font-weight: 700;
+}
+
+h3 {
+  color: #76D2DB;
+  border-bottom: 2px solid #76D2DB;
+  font-weight: 550;
+}
+
+p {
+  font-weight: 400;
+}
+```
+
+## Analysis of My Digital Note-Taking Behaviour
+
+Over a two-week period, I logged every study session where I used my iPad for note-taking. This report visualizes my study habits and quantifies the amount of physical paper I've saved.
+
+```{r}
+# Import the data from csv
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vShO4SMxN2LjWsJAfacWNI7Vdl-RlRIwCWndjqlhtVelZEmhYK_uQ4uKDX8b1qQipxOqmu5VHuakHBH/pub?gid=1368522283&single=true&output=csv")
+
+# Rename columns to improve readability
+latest_data <- logged_data %>%
+  rename(timestamp = 1,
+         course = 2,
+         content_type = 3,
+         pages = 4,
+         density = 5,
+         duration_minutes = 6)
+
+# How many sessions in the data
+total_sessions <- nrow(latest_data)
+
+# What's the average ink density
+avg_density <- mean(latest_data$density)
+
+# How many papers are saved in theory
+total_pages <- sum(latest_data$pages)
+```
+
+So far, by going paperless for my studies with `r total_sessions` sessions, I have saved a total of **`r total_pages`** pages of paper!
+The average "ink density" of my notes is **`r avg_density`** on a scale of 1 to 5. This shows that my notes are typically quite dense, leaning more towards text and equations than sparse diagrams.
+
+# Workload & Style Breakdown
+
+The charts below show which courses I'm working on most frequently and the nature of that work. We can see a breakdown of activities (notes, assignments) and the typical "ink density" of the notes for each subject.
+
+```{r}
+# Type of content in each course
+latest_data %>%
+  ggplot() +
+  geom_bar(aes(x = course, fill = content_type)) +
+  labs(title = "What kind of work am I doing in each course?",
+       subtitle = "Breakdown of study sessions by content type across courses",
+       caption = "Data collected over 14 days of iPad note-taking",
+       x = "Course",
+       y = "Number of Study Sessions",
+       fill = "Content Type")
+```
+
+```{r}
+# Which course is more ink density
+latest_data %>%
+  ggplot() + 
+  geom_bar(aes(x = course, fill = as.factor(density))) + # convert a numerical variable into a factor to stop the warning
+  labs(title = "Which course is more ink-heavy?",
+       subtitle = "Breakdown of ink density across courses",
+       caption = "Data collected over 14 days of iPad note-taking",
+       x = "Course",
+       y = "Number of Study Sessions",
+       fill = "Ink Density\n1 - Mostly Spaces\n5 - Wall of Text")
+```
