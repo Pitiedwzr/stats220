@@ -63,7 +63,7 @@ total_pages <- sum(latest_data$pages)
 So far, by going paperless for my studies with `r total_sessions` sessions, I have saved a total of **`r total_pages`** pages of paper!
 The average "ink density" of my notes is **`r avg_density`** on a scale of 1 to 5. This shows that my notes are typically quite dense, leaning more towards text and equations than sparse diagrams.
 
-# Workload & Style Breakdown
+## Workload & Style Breakdown
 
 The charts below show which courses I'm working on most frequently and the nature of that work. We can see a breakdown of activities (notes, assignments) and the typical "ink density" of the notes for each subject.
 
