@@ -1,0 +1,84 @@
+---
+title: "Project 2"
+author: "Eric Wang"
+output: 
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+```{css}
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+body {
+  background-color: #F7F6E5;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+h2 {
+  color: #DA4848;
+  border-bottom: 2px solid #DA4848;
+  font-weight: 700;
+}
+
+h3 {
+  color: #76D2DB;
+  border-bottom: 2px solid #76D2DB;
+  font-weight: 550;
+}
+
+p {
+  font-weight: 400;
+}
+```
+
+## Introduction
+My focus for this observational logging project was to analyze my personal study habits by tracking my digital note-taking on an iPad. Over a two-week period, every time I completed a study session using the Notability app, I logged key details about it. The primary goal was to quantify the amount of work done for different university courses and to estimate the number of physical paper and ink saved of paperless learning. 
+
+When designing my Google Form, I paid close attention to the Guideline 4: Use validation rules for responses. For example, for the "number of pages" question and the "duration of session" question, I set the response validation to greater than zero since the result of these two questions shouln't be zero or smaller, so that I can collect clean, reliable data meanwhile not introducing any bias and being harmful for people responding.
+
+Analyzing this data allows me to gain several key insights. Firstly, I can know which course has a heavier workload than other course according to the pages and ink density of each course. And I can also know how many phsical resource, pages and ink, are saved over the two weeks by paperless learning.
+ 
+The data for this project was collected using the following Google Form: [Digital Learning Tracker](https://docs.google.com/forms/d/e/1FAIpQLSe2hxWm5qwFnEw_OYGDU0XBmg-UMsMcOJzW5zmOoEb6NSHRog/viewform)
+
+Form design and data collection for this project were completed by me.
+
+## Dynamic report
+Here is my dynamic report, which visualises the collected data with dynamic comments: [Dynamic Report](https://pitiedwzr.github.io/stats220/)
+
+## Creativity
+In this project, I tried to show creativity in several ways:
+
+- I used Google Drawings and publicly available illustrations for personal use(From [irasutoya](https://www.irasutoya.com/)) to create a header for the form that fits the paperless theme, this provided a clear visual context for the person completing the form.
+
+- After checking the format of course code in UoA, I used the regex `^([A-Z]+)( )(\d{3})$` to make sure the course code in the response is in correct format.
+
+- In the Google Form, I found that it can't use multiple validations for one question, so I used the regex `^[1-9][0-9]*$` for question 3 to make sure the number in the response is greater than 0 and is a whole number.
+
+- When design the form, I found it's hard to log how many ink are used in each session without external program, so I used a linear scale question to asking for ink density.
+
+## Learning reflection
+### Important Idea
+One important idea I learned from this module is how to design a form that easy for me to collect clean, tidy data, and not confused the people responding at the same time. Another idea I learned is how to visualise data as a bar chart to find useful result, and publish the dynamic report on website.
+
+### Curious about data technology
+For this project, I want to explore the automation of the data collection step. Although logging is a focus of this project, I think the idea of recording digital notes and calculating the physical resource saved is interesting and meaningful. Now I have the pages, which refer to how many papers are saved, but not ink. I'll try to use R or other programming language to estimate the ink on each page to get a value that is relate to the real world.
+
+### Group work skill
+As I completed this project individually, I will continue to develop my group work skills by actively seeking collaboration in future projects and by planning to contribute to open-source projects on GitHub.
+
+## Reference
+- The header used illustrations from the website [いらすとや(irasutoya)](https://www.irasutoya.com/).
+- The font used in this report is [Source Sans 3](https://fonts.google.com/specimen/Source+Sans+3), designed by Paul D. Hunt, licensed under the [Open Font License](https://openfontlicense.org/).
+- The colour palette used in this report is from [Color Hunt](https://colorhunt.co/palette/f7f6e576d2dbda484836064d).
+
+##  Appendix
+```{r file='exploration.R', eval=FALSE, echo=TRUE}
+
+```
+```{r file='dynamic_report.Rmd', eval=FALSE, echo=TRUE}
+
+```
